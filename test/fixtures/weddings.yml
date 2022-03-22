@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner_name: MyString
+  owner_gender: MyString
+  partner_name: MyString
+  partner_gender: MyString
+  partner_email: MyString
+  partner_phone: MyString
+  wedding_name: MyString
+  wedding_time: 2022-03-22 22:54:28
+
+two:
+  owner_name: MyString
+  owner_gender: MyString
+  partner_name: MyString
+  partner_gender: MyString
+  partner_email: MyString
+  partner_phone: MyString
+  wedding_name: MyString
+  wedding_time: 2022-03-22 22:54:28
