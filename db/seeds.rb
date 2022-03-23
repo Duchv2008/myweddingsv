@@ -5,3 +5,30 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+User.create!(
+  name: "Hà Văn Đức",
+  username: "duchv2",
+  password: "123123",
+  password_confirmation: "123123"
+)
+
+services = Service.all
+if services.length == 0
+  [
+  "Photo & Video",
+  "Transportation",
+  "Ceremony & Music & Show",
+  "Reception",
+  "Jewelry",
+  "Decor",
+  "Attire & accessories",
+  "Makeup",
+  "Other"
+].each { |service|
+  Service.create!(
+    name: service,
+    is_main: true,
+  )
+}
+end

@@ -4,8 +4,8 @@ class WeddingsController < ApplicationController
 
   def create
     @wedding = @current_user.weddings.new parameter
-
     if @wedding.save
+      MockCheckList.new(@wedding).perform()
       render json: @wedding, status: 200
     else
       render json: { errors: @wedding.errors.full_messages },
