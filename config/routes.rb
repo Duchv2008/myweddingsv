@@ -3,26 +3,18 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  post 'login' => 'sessions#create'
-  post 'register' => 'users#create'
+  scope :api do
+    post 'login' => 'sessions#create'
+    post 'register' => 'users#create'
+    # guest accept join wedding
+    post 'guests/accept' => 'guest_accept_join_wedding#create'
+    delete 'guests/cancelled' => 'guest_accept_join_wedding#destroy'
 
-  # wedding
-  post 'weddings' => 'weddings#create'
-  post 'weddings/:id' => 'weddings#update'
-  delete 'weddings/:id' => 'weddings#destroy'
-  get 'weddings/:id' => 'weddings#show'
-
-  # wedding guest
-  get 'wedding_guests' => 'wedding_guests#index'
-  post 'wedding_guests' => 'wedding_guests#create'
-  post 'wedding_guests/:id' => 'wedding_guests#update'
-  delete 'wedding_guests/:id' => 'wedding_guests#destroy'
-  get 'wedding_guests/:id' => 'wedding_guests#show'
-
-  # album wedding
-  get 'albums' => 'albums#index'
-  post 'albums' => 'albums#create'
-  post 'albums/:id' => 'albums#update'
-  delete 'albums/:id' => 'albums#destroy'
-  get 'albums/:id' => 'weddings#show'
+    resources :albums
+    resources :services
+    resources :weddings do
+      resources :checklists
+      resources :wedding_guests
+    end
+  end
 end

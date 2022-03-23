@@ -10,11 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_22_164751) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_23_122135) do
   create_table "albums", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "wedding_id"
     t.string "title"
     t.text "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "checklists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.integer "service_id"
+    t.integer "wedding_id"
+    t.string "status"
+    t.datetime "date"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_main"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,12 +47,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_22_164751) do
 
   create_table "wedding_guests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "wedding_id"
+    t.integer "target_id"
     t.string "phone"
     t.string "name"
     t.string "email"
     t.string "gender"
     t.integer "attachments"
-    t.boolean "is_join"
+    t.string "join_status"
+    t.boolean "is_invite"
     t.boolean "is_attended_their_wedding"
     t.string "money_you_send"
     t.string "money_you_receive"
